@@ -1,0 +1,5 @@
+name: Site Information Alter
+description: Alter Site Information.
+package: Custom
+type: module
+core: 8.x

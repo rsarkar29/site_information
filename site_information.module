@@ -1,0 +1,30 @@
+<?php
+/**
+* @file
+* Add a field to a site information form.
+*/
+
+/**
+ * Implement hook_form_FORM_ID_alter().
+ */
+function site_information_form_system_site_information_settings_alter(&$form, $form_state, $form_id) {
+    
+    $form['site_information']['site_information_apikey'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Site API Key'),
+        '#default_value' => \Drupal::config('system.site')->get('site_information_apikey'),
+    );
+    $form['actions']['submit']['#value'] = t('Update Configuration');
+    $form['#submit'][] = 'system_site_information_set_value';
+        
+
+}
+
+/**
+ *  @callback function
+ */
+function system_site_information_set_value($form, &$form_state) {
+
+ \Drupal::configFactory()->getEditable('system.site')->set('site_information_apikey', $form_state->getValue('site_information_apikey'))->save();
+
+}

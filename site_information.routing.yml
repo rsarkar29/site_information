@@ -1,0 +1,8 @@
+site_information.content:
+  path: '/node-json'
+  defaults:
+    _controller: '\Drupal\site_information\Controller\NodeController::content'
+    _title: 'Node Json'
+  methods: [GET]
+  requirements:
+    _permission: 'access content'
